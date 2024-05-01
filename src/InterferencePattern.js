@@ -3,10 +3,10 @@ import { useState, useEffect } from 'react';
 
 function InterferencePattern() {
     const [data, setData] = useState({});
-    const [wavelengthNm, setWavelengthNm] = useState(633);
-    const [refractiveIndex, setRefractiveIndex] = useState(1.0003);
-    const [gapDist, setGapDist] = useState(1e-5);
-    const [displayDist, setDisplayDist] = useState(0.5);
+    const [wavelengthNm, setWavelengthNm] = useState(780);
+    const [refractiveIndex, setRefractiveIndex] = useState(	1.000273);
+    const [gapDist, setGapDist] = useState(0.3);
+    const [displayDist, setDisplayDist] = useState(0.3);
     const [errorMessage, setErrorMessage] = useState('');
 
     useEffect(() => {
