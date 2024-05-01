@@ -77,7 +77,7 @@ function InterferencePattern() {
                         y: data.y,
                         type: 'heatmap',
                         z: [data.I],
-                        colorscale: 'gray',
+                        colorscale: 'Picnic',
                     },
                 ]}
                 layout={{
