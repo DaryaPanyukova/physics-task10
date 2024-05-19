@@ -11,20 +11,19 @@ function InterferencePattern() {
 
     useEffect(() => {
         const k = 2 * Math.PI * refractiveIndex / (wavelengthNm * 1e-9);
-        const size = 120;
-        const start = 0.01;
-        const step = (start * 2) / size;
-        const x = Array.from({ length: size }, (_, i) => -start + i * step);
-        const y = x.map(xx => displayDist * Math.tan(k * gapDist * xx / displayDist));
+        const size = 200;
+        const start = 1;
+        const step = (start) / size;
+        const x = Array.from({ length: size }, (_, i) => -start / 2 + i * step);
 
         const I = [];
         for (let i = 0; i < size; i++) {
-            const yy = y[i];
-            const bb = k * gapDist * Math.sin(Math.atan(yy / displayDist)) / 2;
-            I.push((1 + Math.cos(k * gapDist * Math.cos(Math.atan(yy / displayDist)))) * Math.pow(Math.cos(bb), 2));
+            const tmp = Math.PI * refractiveIndex * gapDist * x[i] / (wavelengthNm * Math.pow(10, -9) * displayDist);
+            const Ii = 4 * Math.pow(Math.cos(tmp), 2);
+            I.push(Ii);
         }
 
-        setData({ x, y, I });
+        setData({ x, I });
     }, [wavelengthNm, refractiveIndex, gapDist, displayDist]);
 
     useEffect(() => {
@@ -77,7 +76,7 @@ function InterferencePattern() {
                         y: data.y,
                         type: 'heatmap',
                         z: [data.I],
-                        colorscale: 'Picnic',
+                        colorscale: 'Greens',
                     },
                 ]}
                 layout={{
